@@ -7,6 +7,7 @@ if has("vms")
     set nobackup
 else
     set backup
+endif
 set history=50
 set ruler
 set showcmd
@@ -202,4 +203,8 @@ function! GuiTabLabel()
 	return label
 endfunction
 set guitablabel=%{GuiTabLabel()}
+
+" Load the rest
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
