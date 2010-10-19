@@ -1,5 +1,9 @@
 " .vimrc   Arnar Birgisson
 
+" Load stuff via pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " Some global settings
 set nocompatible
 set autoindent
@@ -203,8 +207,4 @@ function! GuiTabLabel()
 	return label
 endfunction
 set guitablabel=%{GuiTabLabel()}
-
-" Load the rest
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
