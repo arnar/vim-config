@@ -30,12 +30,10 @@ set grepprg=grep\ -nH\ $*
 set listchars=eol:$,tab:»·,trail:·
 set path+=**
 let snips_author = 'Arnar Birgisson'
+let mapleader=","
 
 " wrappa með cursor og backspace í næstu línur
 set backspace=2 whichwrap+=<,>,[,]
-
-" Really only makes sense for an Icelandic keyboard
-let mapleader="<"
 
 " Syntax highlighting and smart indents
 syntax on
