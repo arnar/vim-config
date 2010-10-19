@@ -1,4 +1,4 @@
-My `.vim` folder.
+My `.vim` directory.
 
 Installation:
 
@@ -13,3 +13,9 @@ Switch to the `~/.vim` directory, and fetch submodules:
     cd ~/.vim
     git submodule init
     git submodule update
+
+Do avoid "dirty" warnings for helptags in git submodules,
+add "tags" to bundle/<repo>/.git/info/exclude, like this:
+
+    echo tags >> bundle/foo/.git/info/exclude
+
