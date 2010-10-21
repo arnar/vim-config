@@ -99,6 +99,7 @@ vmap gp :!python<CR>
 
 " Use the F-keys wisely
 map <F4> :NERDTree<CR>
+map <F5> :GundoToggle<CR>
 
 " TeX/LaTeX specifics for LaTeX suite
 au BufNewFile,BufRead  *.tex set ft=tex
