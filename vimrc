@@ -12,7 +12,7 @@ if has("vms")
 else
     set backup
 endif
-set history=50
+set history=700
 set ruler
 set showcmd
 set incsearch
@@ -22,8 +22,11 @@ set wb
 set sw=4
 set ts=4
 set et
+set nolazyredraw
+set showmatch mat=2
+set switchbuf=usetab
 set comments=sl:/*,mb:\ *\ ,elx:\ */
-set scrolloff=3
+set scrolloff=5
 set background=dark
 set noeb vb t_vb=   "engar bjöllur takk
 set grepprg=grep\ -nH\ $*
@@ -31,6 +34,7 @@ set listchars=eol:$,tab:»·,trail:·
 set path+=**
 let snips_author = 'Arnar Birgisson'
 let mapleader=","
+let g:mapleader=","
 
 " wrappa með cursor og backspace í næstu línur
 set backspace=2 whichwrap+=<,>,[,]
@@ -59,6 +63,12 @@ set wmh=0
 " reselect visual block after in/dedent
 vnoremap < <gv
 vnoremap > >gv
+
+" Persistent undo
+try
+    set undodir=~/.vim/undodir
+catch
+endtry
 
 if has("gui_running")
    "let psc_style='warm'
@@ -98,9 +108,43 @@ endif
 nmap gp :.!python<CR>
 vmap gp :!python<CR>
 
+" When pressing <leader>cd switch to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
 " Use the F-keys wisely
 map <F4> :NERDTree<CR>
 map <F5> :GundoToggle<CR>
+
+" In visual mode, use * and # to search for selection
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+
+function! VisualSearch(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+" Settings for Command-T
+set wildignore+=*.o,*.obj,.git,*.pyc
+noremap <leader>j :CommandT<CR>
 
 " TeX/LaTeX specifics for LaTeX suite
 au BufNewFile,BufRead  *.tex set ft=tex
