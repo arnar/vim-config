@@ -31,6 +31,7 @@ set background=dark
 set noeb vb t_vb=   "engar bjöllur takk
 set grepprg=grep\ -nH\ $*
 set listchars=eol:$,tab:»·,trail:·
+set laststatus=2 statusline=%t%=%{fugitive#statusline()}\ (%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
 set path+=**
 let snips_author = 'Arnar Birgisson'
 let mapleader=","
@@ -50,8 +51,8 @@ autocmd BufReadPost *
     \ endif
 
 " Shortcuts to get here and reload
-nmap <Leader>s :so ~/.vimrc<cr>
-nmap <Leader>v :e ~/.vimrc<cr>
+nmap <Leader>s :so ~/.vim/vimrc<cr>
+nmap <Leader>v :e ~/.vim/vimrc<cr>
 
 " Tab and window navigation
 nmap <C-H> :tabprevious<CR>
@@ -91,7 +92,7 @@ if has("gui_running")
         nmap <M-D-f> :tabfind 
    else
        set gfn=Monospace\ 9
-       set go-=T
+       set go-=Tm
    end
 endif
 
