@@ -19,3 +19,5 @@ add "tags" to bundle/<repo>/.git/info/exclude, like this:
 
     echo tags >> bundle/foo/.git/info/exclude
 
+**Note:** The file autoload/pathogen.vim is a symbolic link, so it might not work correctly on Windows. In that case copy bundle/pathogen/autoload/pathogen.vim into the autoload folder.
+
