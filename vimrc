@@ -180,9 +180,10 @@ au BufNewFile,BufRead   *.tmpl set enc=utf8
 au Bufenter *.hs compiler ghc
 
 " Charset recognition for Python files
-let s:pep263='coding[:=]\s*\([-A-Za-z0-9_]\+\)'
-au BufReadPost *.py call ReloadWhenCharsetSet(1, s:pep263)
-au BufReadPost *.py call ReloadWhenCharsetSet(2, s:pep263)
+" 2010-11-24: Commenting out since something is missing...
+"let s:pep263='coding[:=]\s*\([-A-Za-z0-9_]\+\)'
+"au BufReadPost *.py call ReloadWhenCharsetSet(1, s:pep263)
+"au BufReadPost *.py call ReloadWhenCharsetSet(2, s:pep263)
 au BufReadPost *.py syntax on
 au BufReadPost *.py set ts=4 sw=4 et
 
@@ -252,4 +253,3 @@ function! GuiTabLabel()
 	return label
 endfunction
 set guitablabel=%{GuiTabLabel()}
-
