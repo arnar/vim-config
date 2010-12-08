@@ -37,6 +37,7 @@ set path+=**
 let snips_author = 'Arnar Birgisson'
 let mapleader=","
 let g:mapleader=","
+let maplocalleader=","
 
 " wrappa með cursor og backspace í næstu línur
 set backspace=2 whichwrap+=<,>,[,]
