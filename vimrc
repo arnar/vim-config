@@ -22,6 +22,7 @@ set wb
 set sw=4
 set ts=4
 set et
+set go+=c
 set nolazyredraw
 set showmatch mat=2
 set switchbuf=usetab
@@ -55,8 +56,8 @@ nmap <Leader>s :so ~/.vim/vimrc<cr>
 nmap <Leader>v :e ~/.vim/vimrc<cr>
 
 " Tab and window navigation
-nmap <C-H> :tabprevious<CR>
-nmap <C-L> :tabnext<CR>
+nmap <C-H> <C-W>h
+nmap <C-L> <C-W>l
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 set wmh=0
@@ -82,8 +83,8 @@ if has("gui_running")
    "color peaksea
    if has("gui_macvim") 
        set gfn=Andale\ Mono:h12.00
-       set lines=47
-       set columns=100
+       "set lines=47
+       "set columns=100
        color ir_black
         " Slaufa-f til að vekja find (ala slaufa-T í textmate)
         " opt-slaufa-f sama nema í nýjum tab
