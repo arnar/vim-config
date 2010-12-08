@@ -22,6 +22,8 @@ That's it. To install other plugins just dump them in `bundle` in their own dire
     git add .
     git commit -m "Installed coolplugin"
 
+To remove a plugin just delete the folder from `bundle`. In case it is a git submodule you have to delete the references to it from `.gitmodules` and `.git/config` and then `git rm --cached bundle/lameplugin`.
+
 Tip: To avoid "dirty" warnings for helptags in git submodules,
 add "tags" to bundle/<repo>/.git/info/exclude, like this:
 
