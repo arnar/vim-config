@@ -14,7 +14,15 @@ Switch to the `~/.vim` directory, and fetch submodules:
     git submodule init
     git submodule update
 
-To avoid "dirty" warnings for helptags in git submodules,
+That's it. To install other plugins just dump them in `bundle` in their own directory. To link to their source as git submodules, do
+
+    cd ~/.vim
+    git submodule add http://github.com/cleverguy/coolplugin.git bundle/coolplugin
+    git submodule init   # to save it in .git/config
+    git add .
+    git commit -m "Installed coolplugin"
+
+Tip: To avoid "dirty" warnings for helptags in git submodules,
 add "tags" to bundle/<repo>/.git/info/exclude, like this:
 
     echo tags >> bundle/foo/.git/info/exclude
