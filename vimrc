@@ -56,7 +56,7 @@ autocmd BufReadPost *
 nmap <Leader>s :so ~/.vim/vimrc<cr>
 nmap <Leader>v :e ~/.vim/vimrc<cr>
 
-" Tab and window navigation
+" Window navigation
 nmap <C-H> <C-W>h
 nmap <C-L> <C-W>l
 nmap <C-J> <C-W>j
@@ -64,8 +64,9 @@ nmap <C-K> <C-W>k
 set wmh=0
 
 " reselect visual block after in/dedent
-vnoremap < <gv
-vnoremap > >gv
+" Commenting out to get used to . instead
+"vnoremap < <gv
+"vnoremap > >gv
 
 " Persistent undo
 try
@@ -121,8 +122,12 @@ vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Use the F-keys wisely
-map <F4> :NERDTree<CR>
-map <F5> :GundoToggle<CR>
+"map <F4> :NERDTree<CR>
+"map <F5> :GundoToggle<CR>
+
+" Let's try these instead
+nmap <leader>t :NERDTree<CR>
+nmap <leader>g :GundoToggle<CR>
 
 " In visual mode, use * and # to search for selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
