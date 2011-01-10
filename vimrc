@@ -63,6 +63,9 @@ nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 set wmh=0
 
+" Ctrl-] is very inconvenient on Icelandic kbd
+map <C-Enter> <C-]>
+
 " reselect visual block after in/dedent
 " Commenting out to get used to . instead
 "vnoremap < <gv
