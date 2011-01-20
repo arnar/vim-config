@@ -1,5 +1,8 @@
 " .vimrc   Arnar Birgisson
 
+" Some bugs in vim surface when the locale is wrong
+lang en_US.UTF-8
+
 " Load stuff via pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -19,9 +22,7 @@ set incsearch
 set hlsearch
 set nobk
 set wb
-set sw=4
-set ts=4
-set et
+set sw=4 ts=4 et
 set go+=c
 set nolazyredraw
 set showmatch mat=2
@@ -84,8 +85,9 @@ if has("gui_running")
    "color HHazure
    "color dante_ab
    "color wombat
-   color mustang
+   "color mustang
    "color peaksea
+   color sorcerer
    if has("gui_macvim") 
        set gfn=Andale\ Mono:h12.00
        "set lines=47
@@ -156,6 +158,11 @@ endfunction
 " Settings for Command-T
 set wildignore+=*.o,*.obj,.git,*.pyc
 noremap <leader>j :CommandT<CR>
+
+" Settings for indent-guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 5
 
 " TeX/LaTeX specifics for LaTeX suite
 au BufNewFile,BufRead  *.tex set ft=tex
