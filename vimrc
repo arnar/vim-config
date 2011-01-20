@@ -1,7 +1,7 @@
 " .vimrc   Arnar Birgisson
 
 " Some bugs in vim surface when the locale is wrong
-lang en_US.UTF-8
+let $LC_NUMERIC='C'
 
 " Load stuff via pathogen
 call pathogen#runtime_append_all_bundles()
@@ -244,29 +244,29 @@ imap <C-d> <left><right><C-o>:call DedentToPrevious()<cr>
 
 " Tab names, from http://blog.golden-ratio.net/2008/08/19/using-tabs-in-vim/
 function! GuiTabLabel()
-	" add the tab number
-	let label = '['.tabpagenr()
+    " add the tab number
+    let label = '['.tabpagenr()
  
-	" modified since the last save?
-	let buflist = tabpagebuflist(v:lnum)
-	for bufnr in buflist
-		if getbufvar(bufnr, '&modified')
-			let label .= '*'
-			break
-		endif
-	endfor
+    " modified since the last save?
+    let buflist = tabpagebuflist(v:lnum)
+    for bufnr in buflist
+        if getbufvar(bufnr, '&modified')
+            let label .= '*'
+            break
+        endif
+    endfor
  
-	" count number of open windows in the tab
-	let wincount = tabpagewinnr(v:lnum, '$')
-	if wincount > 1
-		let label .= ', '.wincount
-	endif
-	let label .= '] '
+    " count number of open windows in the tab
+    let wincount = tabpagewinnr(v:lnum, '$')
+    if wincount > 1
+        let label .= ', '.wincount
+    endif
+    let label .= '] '
  
-	" add the file name without path information
-	let n = bufname(buflist[tabpagewinnr(v:lnum) - 1])
-	let label .= fnamemodify(n, ':t')
+    " add the file name without path information
+    let n = bufname(buflist[tabpagewinnr(v:lnum) - 1])
+    let label .= fnamemodify(n, ':t')
  
-	return label
+    return label
 endfunction
 set guitablabel=%{GuiTabLabel()}
