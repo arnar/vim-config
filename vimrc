@@ -164,30 +164,11 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 5
 
-" TeX/LaTeX specifics for LaTeX suite
+" TeX/LaTeX specifics for latex-box
 au BufNewFile,BufRead  *.tex set ft=tex
-let g:Tex_SmartQuoteOpen = "\"`"
-let g:Tex_SmartQuoteClose = "\"'"
-" let g:Tex_Menus = 0
-let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_ViewRule_pdf = "/usr/bin/open"
-let g:Tex_MenuPrefix = 'TeX.'
-let g:Tex_UseUtfMenus = 1
-let g:Tex_MultipleCompileFormats = "dvi,pdf"
-let g:Tex_IgnoredWarnings =
-\"Underfull\n".
-\"Overfull\n".
-\"specifier changed to\n".
-\"You have requested\n".
-\"Missing number, treated as zero.\n".
-\"There were undefined references\n".
-\"Citation %.%# undefined\n".
-\"LaTeX Font Warning\n".
-\"Reference %.%# undefined\n".
-\"Label(s) may have changed".
-\"Marginpar on page %.%# moved.\n"
-let g:Tex_IgnoreLevel = 11
-let g:Imap_FreezeImap = 1
+au BufNewFile,BufRead  *.tex vmap <buffer> ,wc <Plug>LatexWrapSelection
+au BufNewFile,BufRead  *.tex vmap <buffer> ,we <Plug>LatexWrapSelectionEnv
+au BufNewFile,BufRead  *.tex nmap <buffer> ,ee <Plug>LatexChangeEnv
 
 " Various file-type specifics
 au BufNewFile,BufRead  svn-commit.* setf svn
