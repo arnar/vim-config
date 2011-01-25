@@ -24,6 +24,7 @@ set nobk
 set wb
 set sw=4 ts=4 et
 set go+=c
+set completeopt+=longest
 set nolazyredraw
 set showmatch mat=2
 set switchbuf=usetab
@@ -98,6 +99,7 @@ if has("gui_running")
         " path uppf. til að leita recursive í cwd
         nmap <D-f> :find 
         nmap <M-D-f> :tabfind 
+        let g:LatexBox_viewer = 'open'
    else
        set gfn=Monospace\ 9
        set go-=Tm
@@ -169,6 +171,7 @@ au BufNewFile,BufRead  *.tex set ft=tex
 au BufNewFile,BufRead  *.tex vmap <buffer> ,wc <Plug>LatexWrapSelection
 au BufNewFile,BufRead  *.tex vmap <buffer> ,we <Plug>LatexWrapSelectionEnv
 au BufNewFile,BufRead  *.tex nmap <buffer> ,ee <Plug>LatexChangeEnv
+let g:LatexBox_latexmk_options = '-pvc'
 
 " Various file-type specifics
 au BufNewFile,BufRead  svn-commit.* setf svn
