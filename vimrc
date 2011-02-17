@@ -134,7 +134,12 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Let's try these instead
 nmap <leader>t :NERDTree<CR>
-nmap <leader>g :GundoToggle<CR>
+nmap <leader>u :GundoToggle<CR>
+
+" Git
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gd :Gdiff<CR>
 
 " In visual mode, use * and # to search for selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
