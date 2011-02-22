@@ -183,7 +183,11 @@ au BufNewFile,BufRead  svn-commit.* setf svn
 au BufNewFile,BufRead  *.cs set syn=html
 au BufNewFile,BufRead  *.g  set syn=antlr3
 au BufNewFile,BufRead   *.tmpl set enc=utf8
+
+" Haskell
 au Bufenter *.hs compiler ghc
+let g:haddock_browser = "open"
+let g:haddock_browser_callformat = "%s %s"
 
 " Charset recognition for Python files
 " 2010-11-24: Commenting out since something is missing...
