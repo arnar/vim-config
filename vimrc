@@ -140,6 +140,9 @@ nmap <leader>u :GundoToggle<CR>
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gd :Gdiff<CR>
+nmap <leader>gp :Git push<CR>
+nmap <leader>gnr :Git svn rebase<CR>
+nmap <leader>gnd :Git svn dcommit<CR>
 
 " In visual mode, use * and # to search for selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
