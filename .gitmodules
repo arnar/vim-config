@@ -37,3 +37,6 @@
 [submodule "bundle/fugitive-extradite"]
 	path = bundle/fugitive-extradite
 	url = https://github.com/int3/vim-extradite.git
+[submodule "bundle/calendar"]
+	path = bundle/calendar
+	url = https://github.com/mattn/calendar-vim.git
