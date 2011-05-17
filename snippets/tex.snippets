@@ -1,0 +1,14 @@
+# Beamer frame
+snippet frame
+	\begin{frame}{${1}}
+		${2}
+	\end{frame}
+
+# Beamer frame with bullets
+snippet bframe
+	\begin{frame}{${1}}
+		\begin{itemize}
+		\setlength{\itemsep}{${2:5pt}}
+			\item ${3}
+		\end{itemize}
+	\end{frame}
