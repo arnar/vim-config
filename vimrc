@@ -88,7 +88,8 @@ if has("gui_running")
    "color wombat
    "color mustang
    "color peaksea
-   color sorcerer
+   "color sorcerer
+   color ir_black
    if has("gui_macvim") 
        set gfn=Menlo\ Regular:h11.00
        "set lines=47
@@ -101,8 +102,9 @@ if has("gui_running")
         nmap <M-D-f> :tabfind 
         let g:LatexBox_viewer = 'open'
    else
-       set gfn=Monospace\ 9
-       set go-=Tm
+       "set gfn=Droid\ Sans\ Mono\ 10
+       set gfn=Ubuntu\ Mono\ 12
+       set guioptions=
    end
 endif
 
