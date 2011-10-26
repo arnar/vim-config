@@ -176,6 +176,10 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 5
 
+" Ubuntu calls ack ack-grep
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+noremap <leader>a :Ack! 
+
 " TeX/LaTeX specifics for latex-box
 au BufNewFile,BufRead  *.tex set ft=tex
 au BufNewFile,BufRead  *.tex vmap <buffer> ,wc <Plug>LatexWrapSelection
