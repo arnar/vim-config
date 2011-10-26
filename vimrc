@@ -177,7 +177,9 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 5
 
 " Ubuntu calls ack ack-grep
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+if !has("gui_macvim")
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+end
 noremap <leader>a :Ack! 
 
 " TeX/LaTeX specifics for latex-box
