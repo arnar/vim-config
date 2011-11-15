@@ -167,6 +167,9 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
+" Close the quickfix window on enter
+au BufNewFile,BufRead quickfix nnoremap <silent> <buffer> <CR> <CR>:ccl<CR>
+
 " Settings for Command-T
 set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg
 noremap <leader>j :CommandT<CR>
