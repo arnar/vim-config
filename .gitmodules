@@ -52,3 +52,6 @@
 [submodule "bundle/bclose"]
 	path = bundle/bclose
 	url = https://github.com/rwfitzge/vim-bclose.git
+[submodule "bundle/less"]
+	path = bundle/less
+	url = https://github.com/groenewege/vim-less.git
