@@ -52,3 +52,6 @@
 [submodule "bundle/gist"]
 	path = bundle/gist
 	url = https://github.com/mattn/gist-vim.git
+[submodule "bundle/bclose"]
+	path = bundle/bclose
+	url = https://github.com/rwfitzge/vim-bclose.git
