@@ -94,7 +94,7 @@ if has("gui_running")
        set gfn=Menlo\ Regular:h11.00
        "set lines=47
        "set columns=100
-       color sorcerer " also nice: ir_black
+       "color sorcerer " also nice: ir_black
         " Slaufa-f til að vekja find (ala slaufa-T í textmate)
         " opt-slaufa-f sama nema í nýjum tab
         " path uppf. til að leita recursive í cwd
