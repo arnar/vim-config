@@ -34,7 +34,7 @@ set background=dark
 set noeb vb t_vb=   "engar bjöllur takk
 set grepprg=grep\ -nH\ $*
 set listchars=eol:$,tab:»·,trail:·
-set laststatus=2 statusline=%t%=%{fugitive#statusline()}\ (%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
+set laststatus=2 statusline=%t%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{fugitive#statusline()}\ (%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
 set path+=**
 let snips_author = 'Arnar Birgisson'
 let mapleader=","
