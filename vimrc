@@ -95,12 +95,13 @@ if has("gui_running")
        "set lines=47
        "set columns=100
        "color sorcerer " also nice: ir_black
-        " Slaufa-f til að vekja find (ala slaufa-T í textmate)
-        " opt-slaufa-f sama nema í nýjum tab
-        " path uppf. til að leita recursive í cwd
-        nmap <D-f> :find 
-        nmap <M-D-f> :tabfind 
-        let g:LatexBox_viewer = 'open'
+       " Slaufa-f til að vekja find (ala slaufa-T í textmate)
+       " opt-slaufa-f sama nema í nýjum tab
+       " path uppf. til að leita recursive í cwd
+       nmap <D-f> :find 
+       nmap <M-D-f> :tabfind 
+       let g:LatexBox_viewer = 'open'
+       set guioptions-=T
    else
        "set gfn=Droid\ Sans\ Mono\ 10
        set gfn=Ubuntu\ Mono\ 12
