@@ -101,11 +101,15 @@ if has("gui_running")
        nmap <D-f> :find 
        nmap <M-D-f> :tabfind 
        let g:LatexBox_viewer = 'open'
-       set guioptions-=T
+       set guioptions-=T    " No scroll- or toolbars
+       set guioptions-=l
+       set guioptions-=L
+       set guioptions-=r
+       set guioptions-=R
    else
        "set gfn=Droid\ Sans\ Mono\ 10
        set gfn=Ubuntu\ Mono\ 12
-       set guioptions=
+       set guioptions=c
    end
 endif
 
