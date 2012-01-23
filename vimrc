@@ -184,6 +184,9 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 5
 
+" Powerline status line
+let g:Powerline_symbols = 'fancy'
+
 " Ubuntu calls ack ack-grep
 if !has("gui_macvim")
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
