@@ -39,7 +39,7 @@ set path+=**
 let snips_author = 'Arnar Birgisson'
 let mapleader=","
 let g:mapleader=","
-let maplocalleader=","
+let maplocalleader="\\"
 
 " wrappa með cursor og backspace í næstu línur
 set backspace=2 whichwrap+=<,>,[,]
@@ -150,6 +150,9 @@ nmap <leader>gd :Gdiff<CR>
 nmap <leader>gp :Git push<CR>
 nmap <leader>gnr :Git svn rebase<CR>
 nmap <leader>gnd :Git svn dcommit<CR>
+
+" Tags
+nmap <leader>t :TagbarOpenAutoClose<CR>
 
 " In visual mode, use * and # to search for selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
