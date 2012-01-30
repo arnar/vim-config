@@ -208,5 +208,9 @@ hi link javaScriptNumber      Number
 " Special for CSharp
 hi  link csXmlTag             Keyword      
 
+" Diff colours
+hi DiffAdd              guifg=#7aff66       guibg=#0e3000       gui=none        ctermfg=green       ctermbg=darkgreen   cterm=none
+hi DiffDelete           guifg=#ff7373       guibg=#420000       gui=none        ctermfg=red         ctermbg=darkred     cterm=none
+hi DiffChange           guifg=#59a9ff       guibg=#00263b       gui=none        ctermfg=none        ctermbg=darkblue    cterm=none
+hi DiffText             guifg=#00e1ff       guibg=#00417a       gui=none        ctermfg=cyan        ctermbg=darkblue    cterm=none
 
-" Special for PHP
