@@ -91,7 +91,7 @@ if has("gui_running")
    "color sorcerer
    color ir_black
    if has("gui_macvim") 
-       set gfn=Menlo\ Regular:h11.00
+       set gfn=Menlo\ Regular:h13.00
        "set lines=47
        "set columns=100
        "color sorcerer " also nice: ir_black
