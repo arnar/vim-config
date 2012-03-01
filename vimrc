@@ -95,7 +95,7 @@ if has("gui_running")
    "color sorcerer
    color ir_black
    if has("gui_macvim") 
-       set gfn=Menlo\ Regular:h13.00
+       set gfn=Droid\ Sans\ Mono:h11
        "set lines=47
        "set columns=100
        "color sorcerer " also nice: ir_black
@@ -157,6 +157,9 @@ nmap <leader>gnd :Git svn dcommit<CR>
 
 " Tags
 nmap <leader>t :TagbarOpenAutoClose<CR>
+
+" Tabularize (alignment plugin)
+nmap <leader>= :Tabularize<CR>
 
 " In visual mode, use * and # to search for selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
