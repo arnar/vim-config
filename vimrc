@@ -34,7 +34,8 @@ set background=dark
 set noeb vb t_vb=   "engar bjöllur takk
 set grepprg=grep\ -nH\ $*
 set listchars=eol:$,tab:»·,trail:·
-set laststatus=2 statusline=%t%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{fugitive#statusline()}\ (%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
+set laststatus=2
+" statusline=%t%=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %{fugitive#statusline()}\ (%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
 set path+=**
 let snips_author = 'Arnar Birgisson'
 let mapleader=","
@@ -72,6 +73,9 @@ map <C-Enter> <C-]>
 " Commenting out to get used to . instead
 "vnoremap < <gv
 "vnoremap > >gv
+
+" Let . in visual mode repeat for each selected line
+vnoremap . :normal .<CR>
 
 " Persistent undo
 try
@@ -221,6 +225,18 @@ let g:haddock_browser_callformat = "%s %s"
 "au BufReadPost *.py call ReloadWhenCharsetSet(2, s:pep263)
 au BufReadPost *.py syntax on
 au BufReadPost *.py set ts=4 sw=4 et
+
+" Interaction with IPython, see ftplugin/python/ipy.vim
+let g:ipy_perform_mappings = 0
+"source $HOME/.vim/ipy.vim
+au FileType python map  <buffer> <silent> <leader>d :py get_doc_buffer()<CR>
+au FileType python map  <buffer> <silent> <leader>is :py update_subchannel_msgs(); echo("vim-ipython shell updated",'Operator')<CR>
+au FileType python nmap <buffer> <silent> <leader>id vis<C-s>
+au FileType python map  <buffer> <silent> <C-s> :python run_this_line()<CR>
+au FileType python imap <buffer> <silent> <C-s> <C-O>:python run_this_line()<CR>
+au FileType python map  <silent> <M-s> :python dedent_run_this_line()<CR>
+au FileType python vmap <buffer> <silent> <C-s> :python run_these_lines()<CR>
+au FileType python vmap <buffer> <silent> <M-s> :python dedent_run_these_lines()<CR>
 
 " Markdown behaviour
 augroup markdown
