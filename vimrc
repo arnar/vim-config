@@ -203,6 +203,23 @@ if !has("gui_macvim")
 end
 noremap <leader>a :Ack! 
 
+" Make sure to use the exuberant ctags on mac (installed with brew)
+if has("gui_macvim")
+    let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+end
+
+let g:tagbar_type_tex = {
+    \ 'ctagstype' : 'latex',
+    \ 'kinds'     : [
+        \ 's:sections',
+        \ 'g:graphics',
+        \ 'l:labels',
+        \ 'r:refs:1',
+        \ 'p:pagerefs:1'
+    \ ],
+    \ 'sort'    : 0
+\ }
+
 " TeX/LaTeX specifics for latex-box
 au BufNewFile,BufRead  *.tex set ft=tex
 au BufNewFile,BufRead  *.tex vmap <buffer> ,wc <Plug>LatexWrapSelection
