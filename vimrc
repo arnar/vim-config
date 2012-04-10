@@ -222,9 +222,10 @@ let g:tagbar_type_tex = {
 
 " TeX/LaTeX specifics for latex-box
 au BufNewFile,BufRead  *.tex set ft=tex
-au BufNewFile,BufRead  *.tex vmap <buffer> ,wc <Plug>LatexWrapSelection
-au BufNewFile,BufRead  *.tex vmap <buffer> ,we <Plug>LatexWrapSelectionEnv
-au BufNewFile,BufRead  *.tex nmap <buffer> ,ee <Plug>LatexChangeEnv
+au FileType tex vmap <buffer> ,wc <Plug>LatexWrapSelection
+au FileType tex vmap <buffer> ,we <Plug>LatexWrapSelectionEnv
+au FileType tex nmap <buffer> ,ee <Plug>LatexChangeEnv
+au FileType tex nmap <buffer> <silent> <leader>t :LatexTOC<CR>
 let g:LatexBox_latexmk_options = '-pvc'
 
 " Various file-type specifics
