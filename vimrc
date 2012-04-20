@@ -124,6 +124,8 @@ if !has("gui_running")
     set cpo-=<
     set wcm=<C-Z>
     map <Leader>m :emenu <C-Z>
+    set t_Co=256 "við erum alltaf í 256 lita terminal
+    colors ir_black
 endif
 
 " Python filter
