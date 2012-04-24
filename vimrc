@@ -201,7 +201,9 @@ let g:Powerline_symbols = 'fancy'
 
 " Ubuntu calls ack ack-grep
 if !has("gui_macvim")
-    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+    let g:ackprg="ack-grep -H --nocolor --nogroup"
+else
+    let g:ackprg="ack -H --nocolor --nogroup"
 end
 noremap <leader>a :Ack! 
 
