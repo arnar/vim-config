@@ -146,7 +146,7 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 "map <F5> :GundoToggle<CR>
 
 " Let's try these instead
-nmap <leader>t :NERDTree<CR>
+nmap <leader>d :NERDTree<CR>
 nmap <leader>u :GundoToggle<CR>
 
 " Git
