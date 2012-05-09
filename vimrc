@@ -254,9 +254,9 @@ au BufReadPost *.py set ts=4 sw=4 et
 " Interaction with IPython, see ftplugin/python/ipy.vim
 let g:ipy_perform_mappings = 0
 "source $HOME/.vim/ipy.vim
-au FileType python map  <buffer> <silent> <leader>d :py get_doc_buffer()<CR>
-au FileType python map  <buffer> <silent> <leader>is :py update_subchannel_msgs(); echo("vim-ipython shell updated",'Operator')<CR>
-au FileType python nmap <buffer> <silent> <leader>id vis<C-s>
+au FileType python map  <buffer> <silent> <localleader>d :py get_doc_buffer()<CR>
+au FileType python map  <buffer> <silent> <localleader>is :py update_subchannel_msgs(); echo("vim-ipython shell updated",'Operator')<CR>
+au FileType python nmap <buffer> <silent> <localleader>id vis<C-s>
 au FileType python map  <buffer> <silent> <C-s> :python run_this_line()<CR>
 au FileType python imap <buffer> <silent> <C-s> <C-O>:python run_this_line()<CR>
 au FileType python map  <silent> <M-s> :python dedent_run_this_line()<CR>
