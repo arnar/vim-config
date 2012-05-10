@@ -69,6 +69,10 @@ set wmh=0
 " Ctrl-] is very inconvenient on Icelandic kbd
 map <C-Enter> <C-]>
 
+" In insert mode, C-Enter inserts two lines, puts the cursor between them and
+" indents. Handy with delimitMate and for html/xml tags.
+imap <C-Enter> <CR><CR><C-o>k<Tab>
+
 " reselect visual block after in/dedent
 " Commenting out to get used to . instead
 "vnoremap < <gv
