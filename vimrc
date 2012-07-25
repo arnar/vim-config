@@ -100,7 +100,7 @@ if has("gui_running")
    "color sorcerer
    color ir_black
    if has("gui_macvim") 
-       set gfn=Droid\ Sans\ Mono:h11
+       set gfn=Droid\ Sans\ Mono:h13
        "set lines=47
        "set columns=100
        "color sorcerer " also nice: ir_black
@@ -214,7 +214,7 @@ noremap <leader>a :Ack!
 
 " Make sure to use the exuberant ctags on mac (installed with brew)
 if has("gui_macvim")
-    let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+    let g:tagbar_ctags_bin = '/usr/local/homebrew/bin/ctags'
 end
 
 let g:tagbar_type_tex = {
@@ -273,6 +273,9 @@ augroup markdown
     au! BufRead,BufNewFile *.markdown   setfiletype mkd
     autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
 augroup END
+
+" Javascript
+au FileType javascript setlocal ts=2 sw=2 et
 
 " Handy function to search previous lines for indent levels and
 " use those instead of multiples of shiftwidth
