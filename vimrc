@@ -17,6 +17,7 @@ else
 endif
 set history=700
 set ruler
+set relativenumber
 set showcmd
 set incsearch
 set hlsearch
@@ -252,7 +253,7 @@ let g:haddock_browser_callformat = "%s %s"
 "let s:pep263='coding[:=]\s*\([-A-Za-z0-9_]\+\)'
 "au BufReadPost *.py call ReloadWhenCharsetSet(1, s:pep263)
 "au BufReadPost *.py call ReloadWhenCharsetSet(2, s:pep263)
-au BufReadPost *.py syntax on
+"au BufReadPost *.py syntax on
 au BufReadPost *.py set ts=4 sw=4 et
 
 " Interaction with IPython, see ftplugin/python/ipy.vim
