@@ -168,6 +168,9 @@ nmap <leader>t :TagbarOpenAutoClose<CR>
 " Tabularize (alignment plugin)
 nmap <leader>= :Tabularize<CR>
 
+" Close buffers without messing up windows
+nmap <leader>bd :Kwbd<CR>
+
 " In visual mode, use * and # to search for selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
