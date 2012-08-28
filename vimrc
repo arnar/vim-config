@@ -94,11 +94,11 @@ if has("gui_running")
    "color desert
    "color HHazure
    "color dante_ab
-   "color wombat
+   color wombat
    "color mustang
    "color peaksea
    "color sorcerer
-   color ir_black
+   "color ir_black
    if has("gui_macvim") 
        set gfn=Droid\ Sans\ Mono:h13
        "set lines=47
