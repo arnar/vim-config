@@ -198,6 +198,11 @@ au BufNewFile,BufRead quickfix nnoremap <silent> <buffer> <CR> <CR>:ccl<CR>
 " Settings for Command-T
 set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi
 noremap <leader>j :CommandT<CR>
+augroup CommandTExtension
+  autocmd!
+  autocmd FocusGained * CommandTFlush
+  autocmd BufWritePost * CommandTFlush
+augroup END
 
 " Settings for indent-guides
 let g:indent_guides_start_level = 2
