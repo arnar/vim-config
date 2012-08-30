@@ -243,6 +243,8 @@ au FileType tex vmap <buffer> ,wc <Plug>LatexWrapSelection
 au FileType tex vmap <buffer> ,we <Plug>LatexWrapSelectionEnv
 au FileType tex nmap <buffer> ,ee <Plug>LatexChangeEnv
 au FileType tex nmap <buffer> <silent> <leader>t :LatexTOC<CR>
+au FileType tex set background=light
+au FileType tex colorscheme solarized
 let g:LatexBox_latexmk_options = '-pvc'
 
 " Various file-type specifics
