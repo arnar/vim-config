@@ -94,11 +94,11 @@ if has("gui_running")
    "color desert
    "color HHazure
    "color dante_ab
-   "color wombat
+   color wombat
    "color mustang
    "color peaksea
    "color sorcerer
-   color ir_black
+   "color ir_black
    if has("gui_macvim") 
        set gfn=Droid\ Sans\ Mono:h11
        "set lines=47
@@ -198,6 +198,11 @@ au BufNewFile,BufRead quickfix nnoremap <silent> <buffer> <CR> <CR>:ccl<CR>
 " Settings for Command-T
 set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi
 noremap <leader>j :CommandT<CR>
+augroup CommandTExtension
+  autocmd!
+  autocmd FocusGained * CommandTFlush
+  autocmd BufWritePost * CommandTFlush
+augroup END
 
 " Settings for indent-guides
 let g:indent_guides_start_level = 2
@@ -238,6 +243,8 @@ au FileType tex vmap <buffer> ,wc <Plug>LatexWrapSelection
 au FileType tex vmap <buffer> ,we <Plug>LatexWrapSelectionEnv
 au FileType tex nmap <buffer> ,ee <Plug>LatexChangeEnv
 au FileType tex nmap <buffer> <silent> <leader>t :LatexTOC<CR>
+au FileType tex set background=light
+au FileType tex colorscheme solarized
 let g:LatexBox_latexmk_options = '-pvc'
 
 " Various file-type specifics
