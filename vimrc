@@ -23,7 +23,7 @@ set incsearch
 set hlsearch
 set nobk
 set wb
-set sw=4 ts=4 et
+set sw=2 ts=2 et
 set go+=c
 set completeopt+=longest
 set nolazyredraw
@@ -100,7 +100,7 @@ if has("gui_running")
    "color sorcerer
    color ir_black
    if has("gui_macvim") 
-       set gfn=Droid\ Sans\ Mono:h11
+       set gfn=Droid\ Sans\ Mono\ Slashed\ for\ Powerline:h11
        "set lines=47
        "set columns=100
        "color sorcerer " also nice: ir_black
@@ -146,12 +146,8 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-" Use the F-keys wisely
-"map <F4> :NERDTree<CR>
-"map <F5> :GundoToggle<CR>
-
-" Let's try these instead
-nmap <leader>d :NERDTree<CR>
+" Mappings that open a sidebar / scratch window
+nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>u :GundoToggle<CR>
 
 " Git
@@ -196,8 +192,11 @@ endfunction
 au BufNewFile,BufRead quickfix nnoremap <silent> <buffer> <CR> <CR>:ccl<CR>
 
 " Settings for Command-T
-set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi
+set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules
 noremap <leader>j :CommandT<CR>
+
+" Settings for NERDTree
+let NERDTreeIgnore=['\.pyc$', '\.egg-info$[[dir]]', '\~$']
 
 " Settings for indent-guides
 let g:indent_guides_start_level = 2
