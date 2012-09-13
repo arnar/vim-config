@@ -76,3 +76,6 @@ url=https://github.com/cespare/vim-bclose.git
 [submodule "bundle/splice"]
 	path = bundle/splice
 	url = https://github.com/sjl/splice.vim.git
+[submodule "bundle/matchopen"]
+	path = bundle/matchopen
+	url = http://github.com/arnar/vim-matchopen.git
