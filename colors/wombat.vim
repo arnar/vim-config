@@ -16,13 +16,13 @@ let colors_name = "wombat"
 if version >= 700
   hi CursorLine guibg=#2d2d2d
   hi CursorColumn guibg=#2d2d2d
-  hi MatchParen guifg=#f6f3e8 guibg=#857b6f gui=bold
+  hi MatchParen guifg=NONE guibg=#009933
   hi Pmenu 		guifg=#f6f3e8 guibg=#444444
   hi PmenuSel 	guifg=#000000 guibg=#cae682
 endif
 
 " General colors
-hi Cursor 		guifg=NONE    guibg=#656565 gui=none
+hi Cursor 		guifg=NONE    guibg=#bb0000 gui=none
 hi Normal 		guifg=#f6f3e8 guibg=#242424 gui=none
 hi NonText 		guifg=#808080 guibg=#303030 gui=none
 hi LineNr 		guifg=#857b6f guibg=#1c1c1c gui=none

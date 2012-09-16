@@ -72,7 +72,11 @@ map <C-Enter> <C-]>
 
 " In insert mode, C-Enter inserts two lines, puts the cursor between them and
 " indents. Handy with delimitMate and for html/xml tags.
-imap <C-Enter> <CR><CR><C-o>k<Tab>
+" imap <C-Enter> <CR><CR><C-o>k<Tab>
+" DelimitMate is annoying, let's disable it for now and see if matchopen does
+" it's job (also disable the built-in matchparen plugin):
+let g:loaded_delimitMate = 1
+let loaded_matchparen = 1
 
 " reselect visual block after in/dedent
 " Commenting out to get used to . instead
