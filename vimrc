@@ -104,7 +104,7 @@ if has("gui_running")
    "color sorcerer
    "color ir_black
    if has("gui_macvim") 
-       set gfn=Droid\ Sans\ Mono\ Slashed\ for\ Powerline:h11
+       set gfn=Source\ Code\ Pro\ Light\ for\ Powerline:h11
        "set lines=47
        "set columns=100
        "color sorcerer " also nice: ir_black
