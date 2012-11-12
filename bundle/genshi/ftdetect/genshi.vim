@@ -2,7 +2,7 @@ au BufNewFile,BufRead * call s:FTgenshi()
 
 fun! s:FTgenshi()
   let n = 1
-  if expand('%:e') =~ 'htm[l]\?'
+  if expand('%:e') =~ 'htm[l]\?\|genshi'
     let b:genshi_type = 'html'
   else
     let b:genshi_type = 'xml'
