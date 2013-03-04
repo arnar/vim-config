@@ -162,6 +162,11 @@ nmap <leader>gp :Git push<CR>
 nmap <leader>gnr :Git svn rebase<CR>
 nmap <leader>gnd :Git svn dcommit<CR>
 
+" GitGutter
+nmap <leader>gg :ToggleGitGutter<CR>
+nmap <leader>gh :ToggleGitGutterLineHighlights<CR>
+hi clear SignColumn
+
 " Tags
 nmap <leader>t :TagbarOpenAutoClose<CR>
 
