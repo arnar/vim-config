@@ -201,7 +201,7 @@ endfunction
 au BufNewFile,BufRead quickfix nnoremap <silent> <buffer> <CR> <CR>:ccl<CR>
 
 " Settings for Command-T
-set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules
+set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules,*.class
 noremap <leader>j :CommandT<CR>
 augroup CommandTExtension
   autocmd!
@@ -210,7 +210,7 @@ augroup CommandTExtension
 augroup END
 
 " Settings for NERDTree
-let NERDTreeIgnore=['\.pyc$', '\.egg-info$[[dir]]', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\.egg-info$[[dir]]', '\~$', '\.hi$', '\.o$', '\.class$']
 
 " Settings for indent-guides
 let g:indent_guides_start_level = 2
