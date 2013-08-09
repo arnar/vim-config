@@ -91,3 +91,6 @@ url=https://github.com/cespare/vim-bclose.git
 [submodule "bundle/crunch"]
 	path = bundle/crunch
 	url = https://github.com/arecarn/crunch.git
+[submodule "bundle/gitgutter"]
+	path = bundle/gitgutter
+	url = https://github.com/airblade/vim-gitgutter

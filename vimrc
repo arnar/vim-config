@@ -162,6 +162,11 @@ nmap <leader>gp :Git push<CR>
 nmap <leader>gnr :Git svn rebase<CR>
 nmap <leader>gnd :Git svn dcommit<CR>
 
+" GitGutter
+nmap <leader>gg :ToggleGitGutter<CR>
+nmap <leader>gh :ToggleGitGutterLineHighlights<CR>
+hi clear SignColumn
+
 " Tags
 nmap <leader>t :TagbarOpenAutoClose<CR>
 
@@ -196,7 +201,7 @@ endfunction
 au BufNewFile,BufRead quickfix nnoremap <silent> <buffer> <CR> <CR>:ccl<CR>
 
 " Settings for Command-T
-set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules
+set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules,*.class
 noremap <leader>j :CommandT<CR>
 augroup CommandTExtension
   autocmd!
@@ -205,7 +210,7 @@ augroup CommandTExtension
 augroup END
 
 " Settings for NERDTree
-let NERDTreeIgnore=['\.pyc$', '\.egg-info$[[dir]]', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\.egg-info$[[dir]]', '\~$', '\.hi$', '\.o$', '\.class$']
 
 " Settings for indent-guides
 let g:indent_guides_start_level = 2
@@ -248,6 +253,7 @@ au FileType tex nmap <buffer> ,ee <Plug>LatexChangeEnv
 au FileType tex nmap <buffer> <silent> <leader>t :LatexTOC<CR>
 "au FileType tex set background=light
 "au FileType tex colorscheme solarized
+au FileType tex NoMatchLastOpen
 let g:LatexBox_latexmk_options = '-pvc'
 
 " Various file-type specifics
