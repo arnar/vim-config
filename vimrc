@@ -267,7 +267,7 @@ let g:haddock_browser_callformat = "%s %s"
 "au BufReadPost *.py call ReloadWhenCharsetSet(1, s:pep263)
 "au BufReadPost *.py call ReloadWhenCharsetSet(2, s:pep263)
 "au BufReadPost *.py syntax on
-au BufReadPost *.py set ts=4 sw=4 et
+au BufReadPost *.py setlocal ts=4 sw=4 et
 
 " Interaction with IPython, see ftplugin/python/ipy.vim
 let g:ipy_perform_mappings = 0
