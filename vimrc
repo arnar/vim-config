@@ -21,6 +21,7 @@ Plug 'Shougo/unite.vim'
 Plug 'vim-scripts/Gundo'
 Plug 'rstacruz/sparkup'
 Plug 'bling/vim-airline'
+Plug 'vimoutliner/vimoutliner'
 call plug#end()
 
 " Google stuff
@@ -41,7 +42,7 @@ set noeb novb t_vb=       " No bells!
 
 let mapleader=","
 let g:mapleader=","
-let maplocalleader="\\"
+let maplocalleader=",,"
 
 set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules,*.class
 
