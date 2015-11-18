@@ -8,9 +8,14 @@ Create symlinks:
 
     ln -s ~/.vim/vimrc ~/.vimrc
 
-Open vim and install plugins
+Open vim and install plugins:
 
     vim
     :PlugInstall
+
+After plugins are installed, build the native parts of vimproc:
+
+    cd ~/.vim/plugged/vimproc.vim
+    make
 
 That's it.
