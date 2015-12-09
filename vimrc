@@ -18,6 +18,11 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'arnar/vim-matchopen'
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/unite-outline'
+Plug 'tsukkee/unite-tag'
 Plug 'vim-scripts/Gundo'
 Plug 'rstacruz/sparkup'
 Plug 'bling/vim-airline'
@@ -110,16 +115,74 @@ call unite#custom#profile('ignorecase','context.ignorecase',1)
 call unite#custom#profile('ignorecase','context.smartcase',1)
 
 if executable('ag')
+  let s:ag_opts =  [
+    \ '--vimgrep', '--smart-case', '--skip-vcs-ignores', '--hidden',
+    \ '--ignore', '.git', '--ignore', 'node_modules'
+    \ ]
+  let g:unite_source_rec_async_command =
+    \ ['ag', '--follow', '-g', ''] + s:ag_opts
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+  let g:unite_source_grep_default_opts=join(s:ag_opts)
   let g:unite_source_grep_recursive_opt=''
 elseif executable('ack')
+  let g:unite_source_rec_async_command = ['ack', '-f', '--nofilter' ]
   let g:unite_source_grep_command='ack'
   let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
   let g:unite_source_grep_recursive_opt=''
 endif
 
-nnoremap <leader>j :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async<cr><c-u>
+call unite#custom#profile('default', 'context', {
+  \   'safe': 0,
+  \   'start_insert': 1,
+  \   'short_source_names': 1,
+  \   'update_time': 500,
+  \   'direction': 'topleft',
+  \   'winwidth': 40,
+  \   'winheight': 15,
+  \   'no_auto_resize': 1,
+  \   'vertical_preview': 1,
+  \   'cursor_line_time': '0.10',
+  \   'hide_icon': 0,
+  \   'candidate-icon': ' ',
+  \   'marked_icon': '✓',
+  \   'prompt' : '» '
+  \ })
+
+call unite#custom#profile('navigate,source/grep', 'context', {
+	\   'silent': 1,
+	\   'start_insert': 0,
+	\   'winheight': 20,
+	\   'no_quit': 1,
+	\   'keep_focus': 1,
+	\   'direction': 'botright',
+	\   'prompt_direction': 'top',
+	\ })
+
+call unite#custom#source(
+  \ 'buffer,file_rec,file_rec/async,file_rec/git,neomru/file',
+	\ 'matchers',
+  \ ['converter_relative_word', 'matcher_fuzzy'])
+
+call unite#custom#source(
+  \ 'file_rec,file_rec/async,file_rec/git,file_mru,neomru/file',
+	\ 'converters',
+  \ ['converter_file_directory'])
+
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+nnoremap <silent> <leader>f :<C-u>Unite file_rec/async<cr>
+nnoremap <silent> <leader>r :<C-u>Unite buffer file_mru bookmark<cr>
+nnoremap <silent> <leader>g :<C-u>Unite grep:.<cr>
+nnoremap <silent> <leader>u :<C-u>Unite source<cr>
+nnoremap <silent> <leader>l :<C-u>Unite line<cr>
+nnoremap <silent> <leader>t :<C-u>UniteWithCursorWord tag<cr>
+nnoremap <silent> <leader>y :<C-u>Unite -buffer-name=register register history/yank<cr>
+nnoremap <silent> <leader>o :<C-u>Unite outline<cr>
+nnoremap <silent> <leader>j
+        \ :<C-u>Unite -buffer-name=files -no-split -multi-line -unique -silent
+        \ -no-short-source-names jump_point file_point buffer file_mru
+        \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec/async'`
+        \ file/new<cr>
 
 " Make sure to use the exuberant ctags on mac (installed with brew)
 if has("gui_macvim")
