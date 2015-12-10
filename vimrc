@@ -184,6 +184,15 @@ nnoremap <silent> <leader>j
         \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec/async'`
         \ file/new<cr>
 
+" Powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
 " Make sure to use the exuberant ctags on mac (installed with brew)
 if has("gui_macvim")
     let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
