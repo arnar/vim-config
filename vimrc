@@ -27,6 +27,7 @@ Plug 'vim-scripts/Gundo'
 Plug 'rstacruz/sparkup'
 Plug 'bling/vim-airline'
 Plug 'vimoutliner/vimoutliner'
+Plug 'mhinz/vim-signify'
 call plug#end()
 
 " Google stuff
@@ -71,7 +72,7 @@ autocmd BufReadPost *
     \ endif
 
 if has("gui_running")
-   color wombat
+   colors ir_black256_arnar
    if has("gui_macvim") 
        set gfn=Sauce\ Code\ Powerline\ Light:h11
        set guioptions-=T    " No scroll- or toolbars
@@ -184,17 +185,9 @@ nnoremap <silent> <leader>j
         \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec/async'`
         \ file/new<cr>
 
-" Powerline symbols
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+" Plugin specific settings
+let g:airline_powerline_fonts=1
+let g:signify_vcs_list = [ 'git' ]
 
 " Make sure to use the exuberant ctags on mac (installed with brew)
 if has("gui_macvim")

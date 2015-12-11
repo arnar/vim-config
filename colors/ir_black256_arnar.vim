@@ -66,7 +66,7 @@ let colors_name = "ir_black"
 "hi Example         guifg=NONE        guibg=NONE        gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
 " General colors
-hi Normal           guifg=#f6f3e8     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+hi Normal           guifg=#bbbbbb     guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 hi NonText          guifg=#070707     guibg=black       gui=NONE      ctermfg=244         ctermbg=237         cterm=NONE
 
 hi Cursor           guifg=black       guibg=#FF3030     gui=NONE      ctermfg=black       ctermbg=white       cterm=reverse
@@ -86,7 +86,7 @@ hi WildMenu         guifg=green       guibg=yellow      gui=NONE      ctermfg=bl
 hi PmenuSbar        guifg=black       guibg=white       gui=NONE      ctermfg=black       ctermbg=white       cterm=NONE
 "hi Ignore           guifg=gray        guibg=black       gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 
-hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=white       ctermbg=red         cterm=NONE     guisp=#FF6C60 " undercurl color
+hi Error            guifg=#FF0000     guibg=#700000     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white       ctermbg=red         cterm=NONE
 
@@ -100,6 +100,7 @@ if version >= 700 " Vim 7.x specific colors
   hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
   hi PmenuSel       guifg=#000000     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
   hi Search         guifg=#000000     guibg=#ffff00     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=underline
+  hi SignColumn     guifg=#202020     guibg=#101010     gui=NONE      ctermfg=236         ctermbg=234         cterm=NONE
 endif
 
 " Syntax highlighting
