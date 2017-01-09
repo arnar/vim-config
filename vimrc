@@ -28,6 +28,8 @@ Plug 'rstacruz/sparkup'
 Plug 'bling/vim-airline'
 Plug 'vimoutliner/vimoutliner'
 Plug 'mhinz/vim-signify'
+Plug 'sjl/splice.vim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Google stuff
@@ -188,6 +190,10 @@ nnoremap <silent> <leader>j
 " Plugin specific settings
 if has("gui_running")
   let g:airline_powerline_fonts=1
+else
+  let g:airline_powerline_fonts=0
+  let g:airline_left_sep='►'
+  let g:airline_right_sep='◄'
 endif
 let g:signify_vcs_list = [ 'git' ]
 
