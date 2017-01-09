@@ -162,7 +162,7 @@ call unite#custom#profile('navigate,source/grep', 'context', {
 call unite#custom#source(
   \ 'buffer,file_rec,file_rec/async,file_rec/git,neomru/file',
 	\ 'matchers',
-  \ ['converter_relative_word', 'matcher_fuzzy'])
+  \ ['converter_relative_word', 'matcher_project_files', 'matcher_fuzzy'])
 
 call unite#custom#source(
   \ 'file_rec,file_rec/async,file_rec/git,file_mru,neomru/file',
