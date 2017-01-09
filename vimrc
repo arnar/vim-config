@@ -186,7 +186,9 @@ nnoremap <silent> <leader>j
         \ file/new<cr>
 
 " Plugin specific settings
-let g:airline_powerline_fonts=1
+if has("gui_running")
+  let g:airline_powerline_fonts=1
+endif
 let g:signify_vcs_list = [ 'git' ]
 
 " Make sure to use the exuberant ctags on mac (installed with brew)
