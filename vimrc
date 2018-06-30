@@ -30,6 +30,15 @@ Plug 'vimoutliner/vimoutliner'
 Plug 'mhinz/vim-signify'
 Plug 'sjl/splice.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'nathangrigg/vim-beancount'
+
+"For Rust
+Plug 'rust-lang/rust.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"
 call plug#end()
 
 " Google stuff
@@ -208,6 +217,15 @@ if exists("Glug")
   Glug codefmt-google auto_filetypes+=go
 endif
 au FileType go setlocal ts=2
+
+" Rust
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
 
 " Handy function to search previous lines for indent levels and
 " use those instead of multiples of shiftwidth
