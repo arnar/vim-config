@@ -24,7 +24,8 @@ Plug 'tommcdo/vim-exchange'           " Exchange two ranges
 Plug 'prabirshrestha/async.vim'       " Langauge server dep
 Plug 'prabirshrestha/vim-lsp'         " Language server client
 
-Plug '/Users/arnarb/homebrew/opt/fzf' " TODO: This works only on my mac
+"Plug '/Users/arnarb/homebrew/opt/fzf'
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'               " Fuzzy finder (install fzf cmd line tool)
 
 if has('nvim')
