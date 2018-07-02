@@ -12,7 +12,6 @@ Plug 'tpope/vim-repeat'               " Repeat . works for other things
 Plug 'tpope/vim-speeddating'          " C-A/C-X work on dates
 Plug 'junegunn/vim-easy-align'        " Align in textobjects
 Plug 'tomtom/tcomment_vim'            " Commenting in text objects
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'rbgrouleff/bclose.vim'          " Close buffer without closing window
 Plug 'arnar/vim-matchopen'            " Highlight the current opening delimiter
 Plug 'vim-scripts/Gundo'              " Graphical undo tree
@@ -20,15 +19,10 @@ Plug 'rstacruz/sparkup'               " Sparkup converst css selectors into dom 
 Plug 'bling/vim-airline'              " Statusline
 Plug 'mhinz/vim-signify'              " Gutter diff marks for various VCSs
 Plug 'christoomey/vim-tmux-navigator' " Ctrl-movement moves between tmux panes also
-Plug 'nathangrigg/vim-beancount'      " Beancount lang plugin
-Plug 'w0rp/ale'                       " Async lint engine
-Plug 'sheerun/vim-polyglot'           " One pack of language plugins
 Plug 'tommcdo/vim-exchange'           " Exchange two ranges
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'prabirshrestha/async.vim'       " Langauge server dep
+Plug 'prabirshrestha/vim-lsp'         " Language server client
 
 Plug '/Users/arnarb/homebrew/opt/fzf' " TODO: This works only on my mac
 Plug 'junegunn/fzf.vim'               " Fuzzy finder (install fzf cmd line tool)
@@ -44,6 +38,10 @@ endif
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
+" Languages
+Plug 'rust-lang/rust.vim'
+Plug 'nathangrigg/vim-beancount'      " Beancount lang plugin
+
 " Experimental
 " Plug 'terryma/vim-multiple-cursors'
 
@@ -51,7 +49,6 @@ Plug 'Shougo/neosnippet-snippets'
 "Plug 'sjl/splice.vim'   " Three way merges  (instead use http://vim.wikia.com/wiki/A_better_Vimdiff_Git_mergetool)
 "
 "For Rust  (maybe replaced by polyglot)
-" Plug 'rust-lang/rust.vim'
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'prabirshrestha/asyncomplete.vim'
@@ -71,33 +68,18 @@ endif
 
 " Global settings
 set relativenumber
-set nobk wb               " No backup files, except temporarily when overwriting
-set go+=c                 " Use text prompts instead of modal gui dialogs
-set completeopt+=longest  " Insert only longest prefix
+set nobk wb                        " No backup files, except temporarily when overwriting
+set go+=c                          " Use text prompts instead of modal gui dialogs
+set completeopt+=longest           " Insert only longest prefix
 set nolazyredraw
-set showmatch mat=2       " Briefly highlight matching delimiter on typing
+set showmatch mat=2                " Briefly highlight matching delimiter on typing
 set scrolloff=5
-set noeb novb t_vb=       " No bells!
+set noeb novb t_vb=                " No bells!
+set backspace=2 whichwrap+=<,>,[,] " Backspace wraps to next line
 
 let mapleader=","
 let g:mapleader=","
 let maplocalleader=",,"
-
-" See if this is handled by polyglot, delete if so
-"set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules,*.class
-
-" Backspace wraps to next line
-set backspace=2 whichwrap+=<,>,[,]
-
-" Shortcut to get here (vimrc)
-nmap <Leader>v :e ~/.vim/vimrc<cr>
-
-" Window navigation
-nmap <C-H> <C-W>h
-nmap <C-L> <C-W>l
-nmap <C-J> <C-W>j
-nmap <C-K> <C-W>k
-set wmh=0
 
 " Jump to the last known position
 autocmd BufReadPost *
@@ -105,6 +87,7 @@ autocmd BufReadPost *
     \     exe "normal g`\"" |
     \ endif
 
+" Looks
 if has("gui_running")
    colors ir_black256_arnar
    if has("gui_macvim") 
@@ -123,9 +106,22 @@ else
     colors ir_black256_arnar
 endif
 
-" Execute line/selection as Python and replace with output
-nmap gp :.!python<CR>
-vmap gp :!python<CR>
+" Shortcut to get here (vimrc)
+nmap <Leader>v :e ~/.vim/vimrc<cr>
+
+" Window navigation
+nmap <C-H> <C-W>h
+nmap <C-L> <C-W>l
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+set wmh=0
+
+" Plugin mappings
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+nnoremap gd :<C-u>LspDefinition<CR>
+
 
 " Plugin specific settings
 if has("gui_running")
@@ -140,29 +136,24 @@ let g:deoplete#enable_at_startup = 1
 
 let g:signify_vcs_list = [ 'git', 'hg', 'perforce' ]
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'python': ['pyls'],
-    \ }
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-" Neosnippet/deoplete key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+if executable('/google/data/ro/teams/grok/tools/kythe_languageserver')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'Kythe Language Server',
+    \ 'cmd': {server_info->['/google/data/ro/teams/grok/tools/kythe_languageserver', '--google3']},
+    \ 'whitelist': ['python', 'go', 'java', 'cpp', 'proto'],
+    \})
+endif
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
+if executable('pyls')
+  " pip install python-language-server
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': {server_info->['pyls']},
+    \ 'whitelist': ['python'],
+    \ })
 endif
 
 " Handy function to search previous lines for indent levels and
