@@ -5,46 +5,69 @@ let $LC_NUMERIC='C'
 
 " Plugin management by vim-plug: https://github.com/junegunn/vim-plug
 call plug#begin()
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-markdown'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'arnar/vim-matchopen'
-Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/unite-outline'
-Plug 'tsukkee/unite-tag'
-Plug 'vim-scripts/Gundo'
-Plug 'rstacruz/sparkup'
-Plug 'bling/vim-airline'
-Plug 'vimoutliner/vimoutliner'
-Plug 'mhinz/vim-signify'
-Plug 'sjl/splice.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'nathangrigg/vim-beancount'
+Plug 'tpope/vim-sensible'             " Sensible defaults
+Plug 'tpope/vim-fugitive'             " Git
+Plug 'tpope/vim-surround'             " Surround w textobjects
+Plug 'tpope/vim-repeat'               " Repeat . works for other things
+Plug 'tpope/vim-speeddating'          " C-A/C-X work on dates
+Plug 'junegunn/vim-easy-align'        " Align in textobjects
+Plug 'tomtom/tcomment_vim'            " Commenting in text objects
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'rbgrouleff/bclose.vim'          " Close buffer without closing window
+Plug 'arnar/vim-matchopen'            " Highlight the current opening delimiter
+Plug 'vim-scripts/Gundo'              " Graphical undo tree
+Plug 'rstacruz/sparkup'               " Sparkup converst css selectors into dom tag tree
+Plug 'bling/vim-airline'              " Statusline
+Plug 'mhinz/vim-signify'              " Gutter diff marks for various VCSs
+Plug 'christoomey/vim-tmux-navigator' " Ctrl-movement moves between tmux panes also
+Plug 'nathangrigg/vim-beancount'      " Beancount lang plugin
+Plug 'w0rp/ale'                       " Async lint engine
+Plug 'sheerun/vim-polyglot'           " One pack of language plugins
+Plug 'tommcdo/vim-exchange'           " Exchange two ranges
 
-"For Rust
-Plug 'rust-lang/rust.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug '/Users/arnarb/homebrew/opt/fzf' " TODO: This works only on my mac
+Plug 'junegunn/fzf.vim'               " Fuzzy finder (install fzf cmd line tool)
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+" Experimental
+" Plug 'terryma/vim-multiple-cursors'
+
+
+"Plug 'sjl/splice.vim'   " Three way merges  (instead use http://vim.wikia.com/wiki/A_better_Vimdiff_Git_mergetool)
 "
+"For Rust  (maybe replaced by polyglot)
+" Plug 'rust-lang/rust.vim'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
 call plug#end()
 
 " Google stuff
 if filereadable("/usr/share/vim/google/google.vim")
   source /usr/share/vim/google/google.vim
 endif
+if exists("Glug")
+  Glug codefmt gofmt_executable=goimports
+  Glug codefmt-google auto_filetypes+=go
+endif
+
 
 " Global settings
 set relativenumber
@@ -56,17 +79,17 @@ set showmatch mat=2       " Briefly highlight matching delimiter on typing
 set scrolloff=5
 set noeb novb t_vb=       " No bells!
 
-
 let mapleader=","
 let g:mapleader=","
 let maplocalleader=",,"
 
-set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules,*.class
+" See if this is handled by polyglot, delete if so
+"set wildignore+=*.o,*.obj,.git,*.pyc,*.log,*.aux,*.out,*.bbl,*.blg,*.hi,node_modules,*.class
 
 " Backspace wraps to next line
 set backspace=2 whichwrap+=<,>,[,]
 
-" Shortcut to get here (vimrc) and reload
+" Shortcut to get here (vimrc)
 nmap <Leader>v :e ~/.vim/vimrc<cr>
 
 " Window navigation
@@ -100,101 +123,9 @@ else
     colors ir_black256_arnar
 endif
 
-" Menus for console mode (from help text).
-if !has("gui_running")
-    source $VIMRUNTIME/menu.vim
-    set wildmenu
-    set cpo-=<
-    set wcm=<C-Z>
-    map <Leader>m :emenu <C-Z>
-    set t_Co=256
-    colors ir_black256_arnar
-endif
-
 " Execute line/selection as Python and replace with output
 nmap gp :.!python<CR>
 vmap gp :!python<CR>
-
-"Move line/selection with ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-" Settings for Unite
-let g:unite_prompt='» '
-call unite#custom#profile('ignorecase','context.ignorecase',1)
-call unite#custom#profile('ignorecase','context.smartcase',1)
-
-if executable('ag')
-  let s:ag_opts =  [
-    \ '--vimgrep', '--smart-case', '--skip-vcs-ignores', '--hidden',
-    \ '--ignore', '.git', '--ignore', 'node_modules'
-    \ ]
-  let g:unite_source_rec_async_command =
-    \ ['ag', '--follow', '-g', ''] + s:ag_opts
-  let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts=join(s:ag_opts)
-  let g:unite_source_grep_recursive_opt=''
-elseif executable('ack')
-  let g:unite_source_rec_async_command = ['ack', '-f', '--nofilter' ]
-  let g:unite_source_grep_command='ack'
-  let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
-  let g:unite_source_grep_recursive_opt=''
-endif
-
-call unite#custom#profile('default', 'context', {
-  \   'safe': 0,
-  \   'start_insert': 1,
-  \   'short_source_names': 1,
-  \   'update_time': 500,
-  \   'direction': 'topleft',
-  \   'winwidth': 40,
-  \   'winheight': 15,
-  \   'no_auto_resize': 1,
-  \   'vertical_preview': 1,
-  \   'cursor_line_time': '0.10',
-  \   'hide_icon': 0,
-  \   'candidate-icon': ' ',
-  \   'marked_icon': '✓',
-  \   'prompt' : '» '
-  \ })
-
-call unite#custom#profile('navigate,source/grep', 'context', {
-	\   'silent': 1,
-	\   'start_insert': 0,
-	\   'winheight': 20,
-	\   'no_quit': 1,
-	\   'keep_focus': 1,
-	\   'direction': 'botright',
-	\   'prompt_direction': 'top',
-	\ })
-
-call unite#custom#source(
-  \ 'buffer,file_rec,file_rec/async,file_rec/git,neomru/file',
-	\ 'matchers',
-  \ ['converter_relative_word', 'matcher_project_files', 'matcher_fuzzy'])
-
-call unite#custom#source(
-  \ 'file_rec,file_rec/async,file_rec/git,file_mru,neomru/file',
-	\ 'converters',
-  \ ['converter_file_directory'])
-
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-nnoremap <silent> <leader>f :<C-u>Unite file_rec/async<cr>
-nnoremap <silent> <leader>r :<C-u>Unite buffer file_mru bookmark<cr>
-nnoremap <silent> <leader>g :<C-u>Unite grep:.<cr>
-nnoremap <silent> <leader>u :<C-u>Unite source<cr>
-nnoremap <silent> <leader>l :<C-u>Unite line<cr>
-nnoremap <silent> <leader>t :<C-u>UniteWithCursorWord tag<cr>
-nnoremap <silent> <leader>y :<C-u>Unite -buffer-name=register register history/yank<cr>
-nnoremap <silent> <leader>o :<C-u>Unite outline<cr>
-nnoremap <silent> <leader>j
-        \ :<C-u>Unite -buffer-name=files -no-split -multi-line -unique -silent
-        \ -no-short-source-names jump_point file_point buffer file_mru
-        \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec/async'`
-        \ file/new<cr>
 
 " Plugin specific settings
 if has("gui_running")
@@ -204,33 +135,40 @@ else
   let g:airline_left_sep='►'
   let g:airline_right_sep='◄'
 endif
-let g:signify_vcs_list = [ 'git' ]
 
-" Make sure to use the exuberant ctags on mac (installed with brew)
-if has("gui_macvim")
-    let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-end
+let g:deoplete#enable_at_startup = 1
 
-" Go
-if exists("Glug")
-  Glug codefmt gofmt_executable=goimports
-  Glug codefmt-google auto_filetypes+=go
-endif
-au FileType go setlocal ts=2
+let g:signify_vcs_list = [ 'git', 'hg', 'perforce' ]
 
-" Rust
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'python': ['pyls'],
+    \ }
+
+" Neosnippet/deoplete key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
 endif
 
 " Handy function to search previous lines for indent levels and
 " use those instead of multiples of shiftwidth
 function! DedentToPrevious()
-python << EOF
+python3 << EOF
 import vim
 
 tabsize = int(vim.eval("&ts"))
