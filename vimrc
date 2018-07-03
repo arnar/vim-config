@@ -20,6 +20,7 @@ Plug 'bling/vim-airline'              " Statusline
 Plug 'mhinz/vim-signify'              " Gutter diff marks for various VCSs
 Plug 'christoomey/vim-tmux-navigator' " Ctrl-movement moves between tmux panes also
 Plug 'tommcdo/vim-exchange'           " Exchange two ranges
+Plug 'machakann/vim-highlightedyank'  " Highlight yank temporarily
 
 Plug 'prabirshrestha/async.vim'       " Langauge server dep
 Plug 'prabirshrestha/vim-lsp'         " Language server client
@@ -77,6 +78,7 @@ set showmatch mat=2                " Briefly highlight matching delimiter on typ
 set scrolloff=5
 set noeb novb t_vb=                " No bells!
 set backspace=2 whichwrap+=<,>,[,] " Backspace wraps to next line
+set wmh=0                          " Window min height
 
 let mapleader=","
 let g:mapleader=","
@@ -87,6 +89,10 @@ autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \     exe "normal g`\"" |
     \ endif
+
+if has('nvim')
+  set inccommand=nosplit
+endif
 
 " Looks
 if has("gui_running")
@@ -110,18 +116,18 @@ endif
 " Shortcut to get here (vimrc)
 nmap <Leader>v :e ~/.vim/vimrc<cr>
 
-" Window navigation
-nmap <C-H> <C-W>h
-nmap <C-L> <C-W>l
-nmap <C-J> <C-W>j
-nmap <C-K> <C-W>k
-set wmh=0
 
 " Plugin mappings
+nmap <Leader>j :Files<CR>
+
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 nnoremap gd :<C-u>LspDefinition<CR>
+nnoremap gi :<C-u>LspHover<CR>
+nnoremap gr :<C-u>LspReferences<CR>
+
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 
 " Plugin specific settings
