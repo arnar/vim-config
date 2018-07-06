@@ -97,7 +97,7 @@ if version >= 700 " Vim 7.x specific colors
   hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
   hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
   hi MatchParen     guifg=#33ff33     guibg=NONE        gui=BOLD      ctermfg=white       ctermbg=NONE        cterm=NONE
-  hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=88          cterm=NONE
   hi PmenuSel       guifg=#000000     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
   hi Search         guifg=#000000     guibg=#ffff00     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=underline
   hi SignColumn     guifg=#202020     guibg=#101010     gui=NONE      ctermfg=236         ctermbg=234         cterm=NONE
