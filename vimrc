@@ -5,25 +5,26 @@ let $LC_NUMERIC='C'
 
 " Plugin management by vim-plug: https://github.com/junegunn/vim-plug
 call plug#begin()
-Plug 'tpope/vim-sensible'             " Sensible defaults
-Plug 'tpope/vim-fugitive'             " Git
-Plug 'tpope/vim-surround'             " Surround w textobjects
-Plug 'tpope/vim-repeat'               " Repeat . works for other things
-Plug 'tpope/vim-speeddating'          " C-A/C-X work on dates
-Plug 'junegunn/vim-easy-align'        " Align in textobjects
-Plug 'tomtom/tcomment_vim'            " Commenting in text objects
-Plug 'rbgrouleff/bclose.vim'          " Close buffer without closing window
-Plug 'arnar/vim-matchopen'            " Highlight the current opening delimiter
-Plug 'vim-scripts/Gundo'              " Graphical undo tree
-Plug 'rstacruz/sparkup'               " Sparkup converst css selectors into dom tag tree
-Plug 'bling/vim-airline'              " Statusline
-Plug 'mhinz/vim-signify'              " Gutter diff marks for various VCSs
-Plug 'christoomey/vim-tmux-navigator' " Ctrl-movement moves between tmux panes also
-Plug 'tommcdo/vim-exchange'           " Exchange two ranges
-Plug 'machakann/vim-highlightedyank'  " Highlight yank temporarily
+Plug 'tpope/vim-sensible'              " Sensible defaults
+Plug 'tpope/vim-fugitive'              " Git
+Plug 'tpope/vim-surround'              " Surround w textobjects
+Plug 'tpope/vim-repeat'                " Repeat . works for other things
+Plug 'tpope/vim-speeddating'           " C-A/C-X work on dates
+Plug 'junegunn/vim-easy-align'         " Align in textobjects
+Plug 'tomtom/tcomment_vim'             " Commenting in text objects
+Plug 'rbgrouleff/bclose.vim'           " Close buffer without closing window
+Plug 'arnar/vim-matchopen'             " Highlight the current opening delimiter
+Plug 'vim-scripts/Gundo'               " Graphical undo tree
+Plug 'rstacruz/sparkup'                " Sparkup converst css selectors into dom tag tree
+Plug 'bling/vim-airline'               " Statusline
+Plug 'mhinz/vim-signify'               " Gutter diff marks for various VCSs
+Plug 'christoomey/vim-tmux-navigator'  " Ctrl-movement moves between tmux panes also
+Plug 'tommcdo/vim-exchange'            " Exchange two ranges
+Plug 'machakann/vim-highlightedyank'   " Highlight yank temporarily
 
-Plug 'prabirshrestha/async.vim'       " Langauge server dep
-Plug 'prabirshrestha/vim-lsp'         " Language server client
+Plug 'prabirshrestha/async.vim'        " Langauge server dep
+Plug 'prabirshrestha/vim-lsp'          " Language server client
+Plug 'prabirshrestha/asyncomplete.vim' " Completion[
 
 "Plug '/Users/arnarb/homebrew/opt/fzf'
 Plug '~/.fzf'
@@ -162,6 +163,14 @@ if executable('pyls')
     \ 'whitelist': ['python'],
     \ })
 endif
+
+if executable('rls')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'rls',
+    \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+    \ 'whitelist': ['rust'],
+    \ })
+endif 
 
 " Handy function to search previous lines for indent levels and
 " use those instead of multiples of shiftwidth
